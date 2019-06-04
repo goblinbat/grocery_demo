@@ -1,0 +1,165 @@
+/* How to make variables in css! */
+:root {
+    --lighter-main: rgb(128, 193, 142);
+    --light-main: rgb(80, 161, 98);
+    --main: rgb(43, 128, 62);
+    --dark-main: rgb(16,96,34);
+    --darker-main: rgb(0,64,14);
+}
+/* To use: var(--variable-name) */
+
+
+/* Everything below here was sent out on slack and copy/pasted */
+
+body {
+    height: 100vh;
+    background: url('../img/cubes.png') fixed;
+}
+
+#my_content {
+    margin-bottom: 54px;
+}
+
+/* Navbar */
+
+
+.my_navbar {
+    background-color: var(--darker-main) !important;
+}
+
+.my_brand {
+    color: #fff !important;
+}
+
+.my_links {
+    color: #fff !important;
+}
+
+/* HOME PAGE SECTION */
+
+
+.carousel_image_1 {
+    background: url('../img/cooking.jpg') no-repeat;
+    object-fit: contain;
+    height: 400px;
+}
+
+.carousel_image_2 {
+    background: url('../img/market.jpeg') no-repeat center !important;
+    height: 400px;
+}
+
+.carousel_image_3 {
+    background: url('../img/produce.jpeg') no-repeat center !important;
+    height: 400px;
+}
+
+.carousel_image_4 {
+    background: url('../img/shopping.jpeg') no-repeat top !important;
+    height: 400px;
+}
+
+#home_row {
+    padding-top: 80px;
+    padding-bottom: 100px;
+}
+
+#home_card {
+    margin: auto;
+}
+
+#home_content {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#home_inner {
+    color: var(--dark-main);
+    background-color: rgba(255, 255, 255, 0.6);
+    text-align:center;
+}
+
+#home_img {
+    height: 180px;
+    width: 100%;
+    background: url('../img/list.jpeg') no-repeat center bottom;
+}
+
+.home_lose_track {
+    color: #fff;
+    padding: 40px;
+    background: url('/static/img/cubes.png') fixed;
+    background-color: var(--main);
+}
+
+.home_recipes {
+    color: var(--darker-main);
+    padding: 40px;
+}
+
+/* END HOME PAGE SECTION */
+
+/* LIST SECTION */
+.list_table {
+    background-color: rgba(255, 255, 255, 0.6);
+    border: 1px solid var(--main);
+}
+
+.table_header {
+    border: none;
+}
+
+.add_item {
+    background-color: var(--lighter-main) !important;
+    border: none !important;
+    color: var(--darker-main) !important;
+}
+
+.table_head {
+    border: none !important;
+    background-color: var(--main) !important;
+}
+
+.table_heading {
+    color: var(--dark-main)
+}
+
+.list_table table {
+    margin-bottom: 0 !important;
+}
+
+.td_checkbox {
+    text-align: right;
+}
+
+.td_button {
+    padding: 3px ;
+}
+
+/* ADD ITEM FORM PAGE */
+.add_form {
+    margin: auto;
+    width: 90%;
+    max-width: 500px;
+    background-color: rgba(255, 255, 255, 0.6);
+}
+
+.form_submit {
+    float:right;
+}
+
+/* FOOTER SECTION */
+#my_footer {
+    position: fixed;
+    bottom: 0;
+    width: 100vw;
+    padding: 15px 0;
+    background-color: var(--darker-main);
+}
+
+#my_footer p {
+    color: var(--lighter-main);
+    text-align:center;
+    margin: 0;
+}

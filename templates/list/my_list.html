@@ -1,0 +1,98 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container">
+    <br>
+    <h2 class="table_heading">Your Shopping List</h2>
+    <a href="{% url 'addItem' %}" class="btn btn-primary add_item">Add Item</a>
+    <br>
+    <br>
+    <div class="list_table">
+        <table class="table">
+            <thead class="thead-dark">
+                <tr class="table_header">
+                    <th class="table_head" scope="col">Name</th>
+                    <th class="table_head" scope="col">Amount</th>
+                    <th class="table_head" scope="col">Est. Price</th>
+                    <th class="table_head" scope="col" style="text-align:right;">Grabbed</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% if the_list %}
+                    {% for item in the_list %}
+                        <tr>
+                            <td>{{ item.name }}</td>
+                            <td>{{ item.amount }}</td>
+                            <td>${{ item.price }}</td>
+                            <td>
+                                <form action="{% url 'myList' %}" method="POST">
+                                    <!-- every form needs a csrf_token -->
+                                    {% csrf_token %}            
+                                    <input type="hidden" name="id" value="{{ item.id }}"> 
+                                    <input type="hidden" name="grabbed" value=True>  
+                                    <input class="td_button btn btn-success" type="submit" value="Grab Item">
+                                </form>
+                            </td>
+                        </tr>
+                    {% endfor %}
+                {% else %}
+                        <tr>
+                            <td>No items in your list</td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                {% endif %}
+            </tbody>
+        </table>
+    </div>
+    <br>
+    <br>
+    <h2 class="table_heading">Your Grabbed Items</h2>
+    <div class="list_table">
+        <table class="table">
+            <thead class="thead-dark">
+                <tr class="table_head">
+                    <th class="table_head" scope="col">Name</th>
+                    <th class="table_head" scope="col">Amount</th>
+                    <th class="table_head" scope="col">Est. Price</th>
+                    <th class="table_head" scope="col" style="text-align:right;">Grabbed</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% if grabbed_items  %}
+                    {% for item in grabbed_items %}
+                    <tr>
+                        <td>{{ item.name }}</td>
+                        <td>{{ item.amount }}</td>
+                        <td>${{ item.price }}</td>
+                        <td>
+                            <form action="{% url 'deleteItem' %}" method="POST">
+                                {% csrf_token %}
+                                <input type="hidden" name="id" value="{{ item.id }}">
+                                <input type="submit" value="Delete" class="btn btn-danger">
+                            </form>
+                            <form action="{% url 'myList' %}" method="POST">
+                                <!-- every form needs a csrf_token -->
+                                {% csrf_token %}            
+                                <input type="hidden" name="id" value="{{ item.id }}"> 
+                                <input type="hidden" name="grabbed" value=False>  
+                                <input class="td_button btn btn-success" type="submit" value="Ungrab">
+                            </form>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                {% else %}
+                <tr>
+                    <td>No items in your list</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                {% endif %}
+            </tbody>
+        </table>
+    </div>
+</div>
+<br><br><br><br><br>
+{% endblock %}
